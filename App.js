@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ContactsProvider } from './ContactsContext';
+import ContactsScreen from './ContactsScreen';
+import AddContactScreen from './AddContactScreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <ContactsProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Contacts" component={ContactsScreen} />
+            <Stack.Screen name="AddContact" component={AddContactScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ContactsProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
